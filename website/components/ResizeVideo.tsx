@@ -8,7 +8,8 @@ const ResizeVideo = () => {
     const toggleIframeSize = () => {
         setSize((currentSize: { width: any; height: any; }) => ({
             width: currentSize.width === currentSize.height ? 1280 : 960,
-            height: currentSize.width === currentSize.height ? 960 : 960
+            height: currentSize.width === currentSize.height ? 960 : 960,
+            scale: currentSize.width === currentSize.height ? 1.34 : 1.79,
         }));
     };
 
