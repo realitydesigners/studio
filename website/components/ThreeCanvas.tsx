@@ -1,6 +1,7 @@
-import React from 'react';
+import { Center, OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
+import React from 'react';
+import ScreenMesh from './ScreenMesh';
 import VideoMesh from './VideoMesh';
 
 const ThreeCanvas = () => {
@@ -12,7 +13,11 @@ const ThreeCanvas = () => {
 
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
-            <VideoMesh />
+            <Center />
+            <group position={[0, 0, 0]} >
+                <VideoMesh />
+                <ScreenMesh />
+            </group>
         </Canvas>
     );
 };

@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
 import { Mesh } from 'three';
 
-const VideoMesh = () => {
+const ScreenMesh = () => {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const { width, height } = useIframeSize();
     const [scale, setScale] = useState<number>(1);
@@ -43,7 +43,7 @@ const VideoMesh = () => {
         transition: 'transform 0.3s ease',
     };
 
-    const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=cl7bfavf735090hjq2s2rxnwx";
+    const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=clqzurw3405290fl4bckek9bm";
 
     useEffect(() => {
         if (iframeRef.current) {
@@ -53,7 +53,7 @@ const VideoMesh = () => {
     }, [scale, width, height]);
 
     return (
-        <Html position={[0, 0, 2]} rotation={[0, .5, 0]} transform style={containerStyle}>
+        <Html position={[30, 0, 2]} rotation={[0, -.5, 0]} transform style={containerStyle}>
             <iframe
                 ref={iframeRef}
                 src={videoURL}
@@ -65,4 +65,4 @@ const VideoMesh = () => {
     );
 };
 
-export default VideoMesh;
+export default ScreenMesh;
