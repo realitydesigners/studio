@@ -1,27 +1,27 @@
-import { useIframeSize } from '@/context/IframeSizeContext';
-import { useSelectedName } from '@/context/NameContext';
+import { useVideoSize } from '@/components/context/IframeSizeContext';
+import { useSelectedName } from '@/components/context/NameContext';
 import { Html, Text } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
 
-
-interface ScreenMeshProps {
+interface VideoMeshProps {
     position: [number, number, number];
     rotation: [number, number, number];
 }
 
 
-const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
+const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
-    const { width, height } = useIframeSize();
+    const { width, height } = useVideoSize();
     const [scale, setScale] = useState<number>(1);
 
 
+
     useEffect(() => {
-        if (width === 1440 && height === 960) {
-            setScale(1.35);
+        if (width === 1280 && height === 960) {
+            setScale(1.34);
         } else if (width === 960 && height === 960) {
-            setScale(2.05);
+            setScale(1.79);
         } else {
             setScale(1);
         }
@@ -50,11 +50,7 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
         transition: 'transform 0.3s ease',
     };
 
-    const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=cl7bfavf735090hjq2s2rxnwx";
-
-    const { selectedScreen } = useSelectedName();
-
-
+    const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=clqzurw3405290fl4bckek9bm";
 
     useEffect(() => {
         if (iframeRef.current) {
@@ -63,10 +59,15 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
         }
     }, [scale, width, height]);
 
+    const { selectedScreen } = useSelectedName();
+
+
+
     return (
         <group position={position} rotation={rotation}>
-            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle"> {selectedScreen}</Text>
+            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">{selectedScreen}</Text>
             <Html transform style={containerStyle}>
+
                 <iframe
                     ref={iframeRef}
                     src={videoURL}
@@ -79,4 +80,4 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
     );
 };
 
-export default ScreenMesh;
+export default VideoMesh;

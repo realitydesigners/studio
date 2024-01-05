@@ -1,4 +1,4 @@
-import { useSelectedName } from '@/context/NameContext';
+import { useSelectedName } from '@/components/context/NameContext';
 import React from 'react';
 
 const ScreenSelector = () => {

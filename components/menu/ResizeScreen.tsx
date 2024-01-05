@@ -1,4 +1,4 @@
-import { useIframeSize } from "@/context/IframeSizeContext";
+import { useIframeSize } from "@/components/context/IframeSizeContext";
 
 const ResizeScreen = () => {
     const { setSize } = useIframeSize();

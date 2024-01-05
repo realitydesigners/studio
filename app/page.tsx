@@ -1,10 +1,10 @@
 "use client";
 import Scene from "@/components/Scene";
+import { ScreenSizeProvider, VideoSizeProvider } from "@/components/context/IframeSizeContext";
+import { SelectedNameProvider } from "@/components/context/NameContext";
 import Menu from "@/components/menu/Menu";
-import { ScreenSizeProvider, VideoSizeProvider } from "@/context/IframeSizeContext";
-import { SelectedNameProvider } from "@/context/NameContext";
 
-const HoomePage = () => {
+const StreamPage = () => {
   return (
     <SelectedNameProvider>
       <ScreenSizeProvider>
@@ -20,4 +20,4 @@ const HoomePage = () => {
 };
 
 
-export default HoomePage;
+export default StreamPage;
