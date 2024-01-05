@@ -3,7 +3,6 @@ import Scene from "@/components/Scene";
 import Menu from "@/components/menu/Menu";
 import { ScreenSizeProvider, VideoSizeProvider } from "@/context/IframeSizeContext";
 import { SelectedNameProvider } from "@/context/NameContext";
-import React from "react";
 
 const StreamPage = () => {
 	return (

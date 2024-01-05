@@ -1,10 +1,23 @@
-import Link from 'next/link'
+"use client";
+import Scene from "@/components/Scene";
+import Menu from "@/components/menu/Menu";
+import { ScreenSizeProvider, VideoSizeProvider } from "@/context/IframeSizeContext";
+import { SelectedNameProvider } from "@/context/NameContext";
 
-export default function Home() {
+const HoomePage = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <SelectedNameProvider>
+      <ScreenSizeProvider>
+        <VideoSizeProvider>
+          <div className="bg-black w-full h-screen relative flex flex-col">
+            <Menu />
+            <Scene />
+          </div>
+        </VideoSizeProvider>
+      </ScreenSizeProvider>
+    </SelectedNameProvider>
+  );
+};
 
-      <Link href="/stream" className='text-white p-3 font-mono bg-gray-600/20'>Stream</Link>
-    </main>
-  )
-}
+
+export default HoomePage;
