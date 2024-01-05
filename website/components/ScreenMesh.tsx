@@ -4,7 +4,13 @@ import { useFrame } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
 import { Mesh } from 'three';
 
-const ScreenMesh = () => {
+interface ScreenMeshProps {
+    position: [number, number, number];
+    rotation: [number, number, number];
+}
+
+
+const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const { width, height } = useIframeSize();
     const [scale, setScale] = useState<number>(1);
@@ -53,15 +59,17 @@ const ScreenMesh = () => {
     }, [scale, width, height]);
 
     return (
-        <Html position={[30, 0, 2]} rotation={[0, -.5, 0]} transform style={containerStyle}>
-            <iframe
-                ref={iframeRef}
-                src={videoURL}
-                title="Live Video"
-                style={iframeStyle}
-                className="bg-gray-700" // debugging
-            />
-        </Html>
+        <group position={position} rotation={rotation}>
+            <Html transform style={containerStyle}>
+                <iframe
+                    ref={iframeRef}
+                    src={videoURL}
+                    title="Live Video"
+                    style={iframeStyle}
+                    className="bg-gray-700" // debugging
+                />
+            </Html>
+        </group>
     );
 };
 
