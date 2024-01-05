@@ -1,12 +1,13 @@
-import { useIframeSize } from "@/components/context/IframeSizeContext";
+import { useAppContext } from '@/components/context/AppContext';
 
 const ResizeScreen = () => {
-    const { setSize } = useIframeSize();
+    const { videoSize, setScreenSize } = useAppContext();
+
 
     const toggleScreenSize = () => {
 
         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-        setSize((currentSize: { width: any; height: any }) => ({
+        setScreenSize((currentSize: { width: any; height: any }) => ({
             width: currentSize.width === currentSize.height ? 1440 : 960,
             height: currentSize.width === currentSize.height ? 960 : 960,
             scale: currentSize.width === currentSize.height ? 1.34 : 1.79,

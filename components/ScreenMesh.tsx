@@ -1,39 +1,34 @@
-import { useIframeSize } from '@/components/context/IframeSizeContext';
+import { useAppContext } from '@/components/context/AppContext';
 import { useSelectedName } from '@/components/context/NameContext';
 import { Html, Text } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
-
 
 interface ScreenMeshProps {
     position: [number, number, number];
     rotation: [number, number, number];
 }
 
-
 const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
-    const { width, height } = useIframeSize();
+    const { screenSize } = useAppContext();
     const [scale, setScale] = useState<number>(1);
 
-
     useEffect(() => {
-        if (width === 1440 && height === 960) {
+        if (screenSize.width === 1440 && screenSize.height === 960) {
             setScale(1.35);
-        } else if (width === 960 && height === 960) {
+        } else if (screenSize.width === 960 && screenSize.height === 960) {
             setScale(2.05);
         } else {
             setScale(1);
         }
-    }, [width, height]);
+    }, [screenSize.width, screenSize.height]);
 
-
-    const topOffset = (height - height * scale) / 2;
-    const leftOffset = (width - width * scale) / 2;
+    const topOffset = (screenSize.height - screenSize.height * scale) / 2;
+    const leftOffset = (screenSize.width - screenSize.width * scale) / 2;
 
     const containerStyle: React.CSSProperties = {
-        width: `${width}px`,
-        height: `${height}px`,
+        width: `${screenSize.width}px`,
+        height: `${screenSize.height}px`,
         overflow: 'hidden',
         position: 'relative',
     };
@@ -42,8 +37,8 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
         position: 'absolute',
         top: `${topOffset}px`,
         left: `${leftOffset}px`,
-        width: `${width * scale}px`,
-        height: `${height * scale}px`,
+        width: `${screenSize.width * scale}px`,
+        height: `${screenSize.height * scale}px`,
         border: 'none',
         transform: 'scale(1)',
         transformOrigin: 'top left',
@@ -54,18 +49,18 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
 
     const { selectedScreen } = useSelectedName();
 
-
-
     useEffect(() => {
         if (iframeRef.current) {
-            iframeRef.current.style.width = `${width * scale}px`;
-            iframeRef.current.style.height = `${height * scale}px`;
+            iframeRef.current.style.width = `${screenSize.width * scale}px`;
+            iframeRef.current.style.height = `${screenSize.height * scale}px`;
         }
-    }, [scale, width, height]);
+    }, [scale, screenSize.width, screenSize.height]);
 
     return (
         <group position={position} rotation={rotation}>
-            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle"> {selectedScreen}</Text>
+            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">
+                {selectedScreen}
+            </Text>
             <Html transform style={containerStyle}>
                 <iframe
                     ref={iframeRef}

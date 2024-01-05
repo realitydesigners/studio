@@ -1,7 +1,7 @@
-import { useVideoSize } from '@/components/context/IframeSizeContext';
+import { useAppContext } from '@/components/context/AppContext';
+
 import { useSelectedName } from '@/components/context/NameContext';
 import { Html, Text } from '@react-three/drei';
-import { useFrame, } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
 
 interface VideoMeshProps {
@@ -9,31 +9,27 @@ interface VideoMeshProps {
     rotation: [number, number, number];
 }
 
-
 const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
-    const { width, height } = useVideoSize();
+    const { videoSize } = useAppContext();
     const [scale, setScale] = useState<number>(1);
 
-
-
     useEffect(() => {
-        if (width === 1280 && height === 960) {
+        if (videoSize.width === 1280 && videoSize.height === 960) {
             setScale(1.34);
-        } else if (width === 960 && height === 960) {
+        } else if (videoSize.width === 960 && videoSize.height === 960) {
             setScale(1.79);
         } else {
             setScale(1);
         }
-    }, [width, height]);
+    }, [videoSize.width, videoSize.height]);
 
-
-    const topOffset = (height - height * scale) / 2;
-    const leftOffset = (width - width * scale) / 2;
+    const topOffset = (videoSize.height - videoSize.height * scale) / 2;
+    const leftOffset = (videoSize.width - videoSize.width * scale) / 2;
 
     const containerStyle: React.CSSProperties = {
-        width: `${width}px`,
-        height: `${height}px`,
+        width: `${videoSize.width}px`,
+        height: `${videoSize.height}px`,
         overflow: 'hidden',
         position: 'relative',
     };
@@ -42,8 +38,8 @@ const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
         position: 'absolute',
         top: `${topOffset}px`,
         left: `${leftOffset}px`,
-        width: `${width * scale}px`,
-        height: `${height * scale}px`,
+        width: `${videoSize.width * scale}px`,
+        height: `${videoSize.height * scale}px`,
         border: 'none',
         transform: 'scale(1)',
         transformOrigin: 'top left',
@@ -54,20 +50,19 @@ const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
 
     useEffect(() => {
         if (iframeRef.current) {
-            iframeRef.current.style.width = `${width * scale}px`;
-            iframeRef.current.style.height = `${height * scale}px`;
+            iframeRef.current.style.width = `${videoSize.width * scale}px`;
+            iframeRef.current.style.height = `${videoSize.height * scale}px`;
         }
-    }, [scale, width, height]);
+    }, [scale, videoSize.width, videoSize.height]);
 
     const { selectedScreen } = useSelectedName();
 
-
-
     return (
         <group position={position} rotation={rotation}>
-            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">{selectedScreen}</Text>
+            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">
+                {selectedScreen}
+            </Text>
             <Html transform style={containerStyle}>
-
                 <iframe
                     ref={iframeRef}
                     src={videoURL}
