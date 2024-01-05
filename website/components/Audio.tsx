@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const AudioComponent = () => {
     const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
@@ -23,10 +23,10 @@ const AudioComponent = () => {
         <div>
             <button
                 type="button"
-                className=" text-xs z-10 relative rounded-full font-mono text-gray-200  bg-white/10 p-1 pl-2 pr-2 right-4"
+                className="text-md uppercase pl-4 pr-4 p-2 font-bold font-mono rounded-full z-10 relative  text-gray-200  bg-white/10 p-1 pl-2 pr-2 "
                 onClick={startAudio}
             >
-                Audio
+                Start Audio
             </button>
         </div>
     );

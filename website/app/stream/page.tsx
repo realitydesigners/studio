@@ -1,22 +1,21 @@
-
 "use client";
-import React from "react";
-import Audio from "@/components/Audio";
-import { IframeSizeProvider } from "@/context/IframeSizeContext";
 import Menu from "@/components/Menu";
-import ThreeCanvas from "@/components/ThreeCanvas";
+import Scene from "@/components/Scene";
+import { ScreenSizeProvider, VideoSizeProvider } from "@/context/IframeSizeContext";
+import React from "react";
 
-const VideoTestPage = () => {
+const StreamPage = () => {
 	return (
-		<IframeSizeProvider>
-			<div className="bg-black w-full h-screen relative flex flex-col ">
-				<Menu />
-				<ThreeCanvas />
-
-
-			</div>
-		</IframeSizeProvider>
+		<ScreenSizeProvider>
+			<VideoSizeProvider>
+				<div className="bg-black w-full h-screen relative flex flex-col">
+					<Menu />
+					<Scene />
+				</div>
+			</VideoSizeProvider>
+		</ScreenSizeProvider>
 	);
 };
 
-export default VideoTestPage;
+
+export default StreamPage;

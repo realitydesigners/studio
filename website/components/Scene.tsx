@@ -15,9 +15,8 @@ const ThreeCanvas = () => {
             <pointLight position={[10, 10, 10]} />
 
             <group position={[0, 0, 0]} rotation={[0, 0, 0]}>
-
-                <ScreenMesh position={[15, 0, 0]} rotation={[0, -.5, 0]} />
-                <VideoMesh position={[-15, 0, 0]} rotation={[0, .5, 0]} />
+                <ScreenMesh position={[-16, 0, 0]} rotation={[0, .4, 0]} />
+                <VideoMesh position={[16, 0, -1]} rotation={[0, -.4, 0]} />
             </group>
         </Canvas>
     );

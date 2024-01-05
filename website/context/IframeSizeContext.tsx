@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
 interface IframeSize {
     width: number;
@@ -10,25 +10,47 @@ interface IframeSizeContextType extends IframeSize {
     setSize: Dispatch<SetStateAction<IframeSize>>;
 }
 
-const IframeSizeContext = createContext<IframeSizeContextType>({
+const ScreenSizeContext = createContext<IframeSizeContextType>({
     width: 1280,
     height: 960,
     scale: 1.34,
     setSize: () => { },
 });
 
-export const IframeSizeProvider = ({ children }: { children: React.ReactNode }) => {
-    const [size, setSize] = useState<IframeSize>({ width: 1280, height: 960, scale: 1.34 }); // Initialize with a default scale of 1
+const VideoSizeContext = createContext<IframeSizeContextType>({
+    width: 1440,
+    height: 960,
+    scale: 1.34,
+    setSize: () => { },
+});
+
+
+export const ScreenSizeProvider = ({ children }: { children: React.ReactNode }) => {
+    const [size, setSize] = useState<IframeSize>({ width: 1440, height: 960, scale: 1.34 }); // Initialize with a default scale of 1
 
     const value = { ...size, setSize };
 
     return (
-        <IframeSizeContext.Provider value={value}>
+        <ScreenSizeContext.Provider value={value}>
             {children}
-        </IframeSizeContext.Provider>
+        </ScreenSizeContext.Provider>
     );
 };
 
-export const useIframeSize = () => useContext(IframeSizeContext);
+export const VideoSizeProvider = ({ children }: { children: React.ReactNode }) => {
+    const [videoSize, setVideoSize] = useState<IframeSize>({ width: 1280, height: 960, scale: 1.34 });
 
-export default IframeSizeContext;
+    const value = { ...videoSize, setSize: setVideoSize };
+
+    return (
+        <VideoSizeContext.Provider value={value}>
+            {children}
+        </VideoSizeContext.Provider>
+    );
+};
+
+
+export const useIframeSize = () => useContext(ScreenSizeContext);
+export const useVideoSize = () => useContext(VideoSizeContext);
+
+

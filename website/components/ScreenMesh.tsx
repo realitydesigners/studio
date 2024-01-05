@@ -17,10 +17,10 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
 
 
     useEffect(() => {
-        if (width === 1280 && height === 960) {
-            setScale(1.34);
+        if (width === 1440 && height === 960) {
+            setScale(1.35);
         } else if (width === 960 && height === 960) {
-            setScale(1.79);
+            setScale(2.05);
         } else {
             setScale(1);
         }
@@ -49,7 +49,8 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
         transition: 'transform 0.3s ease',
     };
 
-    const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=clqzurw3405290fl4bckek9bm";
+    const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=cl7bfavf735090hjq2s2rxnwx";
+
 
     useEffect(() => {
         if (iframeRef.current) {

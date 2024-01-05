@@ -1,4 +1,4 @@
-import { useIframeSize } from '@/context/IframeSizeContext';
+import { useVideoSize } from '@/context/IframeSizeContext';
 import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
@@ -12,7 +12,7 @@ interface VideoMeshProps {
 
 const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
-    const { width, height } = useIframeSize();
+    const { width, height } = useVideoSize();
     const [scale, setScale] = useState<number>(1);
 
 
@@ -49,7 +49,7 @@ const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
         transition: 'transform 0.3s ease',
     };
 
-    const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=cl7bfavf735090hjq2s2rxnwx";
+    const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=clqzurw3405290fl4bckek9bm";
 
     useEffect(() => {
         if (iframeRef.current) {
