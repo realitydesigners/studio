@@ -1,4 +1,5 @@
 import { useVideoSize } from '@/context/IframeSizeContext';
+import { useSelectedName } from '@/context/NameContext';
 import { Html, Text } from '@react-three/drei';
 import { useFrame, } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
@@ -13,6 +14,7 @@ const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const { width, height } = useVideoSize();
     const [scale, setScale] = useState<number>(1);
+
 
 
     useEffect(() => {
@@ -57,9 +59,13 @@ const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
         }
     }, [scale, width, height]);
 
+    const { selectedScreen } = useSelectedName();
+
+
+
     return (
         <group position={position} rotation={rotation}>
-            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">@raymondreamer</Text>
+            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">{selectedScreen}</Text>
             <Html transform style={containerStyle}>
 
                 <iframe
@@ -67,7 +73,7 @@ const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
                     src={videoURL}
                     title="Live Video"
                     style={iframeStyle}
-                    className="bg-gray-700" // debugging
+                    className="bg-gray-200" // debugging
                 />
             </Html>
         </group>

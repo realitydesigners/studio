@@ -1,4 +1,5 @@
 import { useIframeSize } from '@/context/IframeSizeContext';
+import { useSelectedName } from '@/context/NameContext';
 import { Html, Text } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
@@ -51,6 +52,9 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
 
     const videoURL = "https://ping.gg/quick/h6a013z7t7adnqp?view=cl7bfavf735090hjq2s2rxnwx";
 
+    const { selectedScreen } = useSelectedName();
+
+
 
     useEffect(() => {
         if (iframeRef.current) {
@@ -61,14 +65,14 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
 
     return (
         <group position={position} rotation={rotation}>
-            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">Screen Share</Text>
+            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle"> {selectedScreen}</Text>
             <Html transform style={containerStyle}>
                 <iframe
                     ref={iframeRef}
                     src={videoURL}
                     title="Live Video"
                     style={iframeStyle}
-                    className="bg-gray-700" // debugging
+                    className="bg-gray-200" // debugging
                 />
             </Html>
         </group>

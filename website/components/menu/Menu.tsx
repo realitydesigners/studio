@@ -1,6 +1,7 @@
-import Audio from "@/components/Audio";
-import ResizeVideo from "@/components/ResizeVideo";
-import ResizeScreen from "./ResizeScreen";
+import Audio from "@/components/menu/Audio";
+import ResizeScreen from "@/components/menu/ResizeScreen";
+import ResizeVideo from "@/components/menu/ResizeVideo";
+import ScreenName from "@/components/menu/ScreenName";
 
 export default function Menu() {
     return (
@@ -8,6 +9,7 @@ export default function Menu() {
             <ResizeScreen />
             <ResizeVideo />
             <Audio />
+            <ScreenName />
         </div>
     );
 }
