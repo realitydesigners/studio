@@ -1,8 +1,8 @@
 import { useIframeSize } from '@/context/IframeSizeContext';
-import { Html } from '@react-three/drei';
+import { Html, Text } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
-import { Mesh } from 'three';
+
 
 interface ScreenMeshProps {
     position: [number, number, number];
@@ -61,6 +61,7 @@ const ScreenMesh: React.FC<ScreenMeshProps> = ({ position, rotation }) => {
 
     return (
         <group position={position} rotation={rotation}>
+            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">Screen Share</Text>
             <Html transform style={containerStyle}>
                 <iframe
                     ref={iframeRef}

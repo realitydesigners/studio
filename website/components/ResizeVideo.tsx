@@ -1,6 +1,4 @@
 import { useVideoSize } from '@/context/IframeSizeContext';
-import React from 'react';
-
 
 const ResizeVideo = () => {
     const { width, height, setSize } = useVideoSize();

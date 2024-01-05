@@ -1,8 +1,7 @@
 import { useVideoSize } from '@/context/IframeSizeContext';
-import { Html } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { Html, Text } from '@react-three/drei';
+import { useFrame, } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
-import { Mesh } from 'three';
 
 interface VideoMeshProps {
     position: [number, number, number];
@@ -60,7 +59,9 @@ const VideoMesh: React.FC<VideoMeshProps> = ({ position, rotation }) => {
 
     return (
         <group position={position} rotation={rotation}>
+            <Text font="/Staatliches.ttf" position={[0, -15, 0]} fontSize={2} color="white" anchorX="center" anchorY="middle">@raymondreamer</Text>
             <Html transform style={containerStyle}>
+
                 <iframe
                     ref={iframeRef}
                     src={videoURL}
