@@ -6,7 +6,6 @@ import Menu from "@/components/menu/Menu";
 
 const StreamPage = () => {
 	return (
-
 		<AppProvider>
 			<SelectedNameProvider>
 				<div className="bg-black w-full h-screen relative flex flex-col">
@@ -15,9 +14,7 @@ const StreamPage = () => {
 				</div>
 			</SelectedNameProvider>
 		</AppProvider>
-
 	);
 };
-
 
 export default StreamPage;
